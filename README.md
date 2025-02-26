@@ -28,7 +28,7 @@ This repository contains the code for our paper: [Know You First and Be You Bett
     - [Experiment](#experiment)
     - [Demo](#demo)
     - [Citation](#citation)
-    - [References & Acknowledgements](#References & Acknowledgements)
+    - [References & Acknowledgements](#Acknowledgements)
     - [Contact](#contact)
 
 
@@ -231,7 +231,7 @@ bibtexCopy@article{wang2025usp,
 
 ## References & Acknowledgements
 
-
+<a id="Acknowledgements"></a>
 
 We would like to express our gratitude to the following projects and organizations for their contributions to the field of AI and NLP:
 
