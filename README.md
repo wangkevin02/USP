@@ -4,7 +4,7 @@
 
 This repository contains the code for our paper: [Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles](), where we introduce our **User Simulator with Implicit Profiles (USP)**, which can simulate realistic user by generating the target user's behavior or utterances based on the specified profile, enabling **automated** dynamic multi-turn interactions with LLMs and scene reproduction. See our [Demo](#Demo) for a clearer insight.
 
-<img src="./assets/image-20250226170315926.png" alt="Dialogue Visualization" style="width: 50%; height: auto;" />
+<img src="./assets/image-20250226170315926.png" alt="Dialogue Visualization" style="width: 50%; height: auto; display: block; margin: 0 auto;" />
 
 
 
