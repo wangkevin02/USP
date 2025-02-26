@@ -28,7 +28,7 @@ This repository contains the code for our paper: [Know You First and Be You Bett
     - [Experiment](#experiment)
     - [Demo](#demo)
     - [Citation](#citation)
-    - [License](#license)
+    - [References & Acknowledgements](#References & Acknowledgements)
     - [Contact](#contact)
 
 
