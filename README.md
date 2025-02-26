@@ -206,7 +206,7 @@ For comprehensive evaluation results, please refer to Section 5 of [our paper](p
 
 ## Demo
 
-Below, we compare the performance of our USP against several strong baselines, all simulating **user** in multi-turn conversational interactions with LLMs. The first example demonstrates the reconstruction of a dialogue based on user characteristics extracted from a reference conversation. The second illustrates how different user simulators interact with an LLM using the <u>same randomly given profile</u>.
+Below, we compare the performance of our USP against several strong baselines, all simulating **user** in multi-turn conversational interactions with LLMs. The first example demonstrates the reconstruction of a dialogue based on user characteristics extracted from a reference conversation. The second illustrates the varying behaviors of different user simulators when using the <u>same randomly given profile</u>.
 
 **Analysis:** In the first example, ProfileGPT (4o), a GPT-4o baseline simulating users via role-playing, exhibits **role confusion** and devolves into repetitive mutual praise with the LLM. PlatoLM, lacking profile constraints, **strays off-topic** by the fourth turn (shifting from LLM-AI discussions to text summarization), despite given the golden first-round context.In contrast, our USP accurately reconstructs user characteristics, preserving semantic consistency and capturing stylistic nuances, such as the user’s “lazy” lowercase “i” preference. 
 
