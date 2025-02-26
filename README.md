@@ -70,7 +70,13 @@ conda activate USP
 
 ### Inference
 
-Install dependencies from `inf_requirements.txt` for inference-only usage.
+Install dependencies from [inf_requirements.txt](inf_requirements.txt) for inference-only usage.
+
+```bash
+pip install -r inf_requirements.txt
+```
+
+
 
 #### Using the USP Model
 
@@ -219,10 +225,20 @@ bibtexCopy@article{wang2025usp,
 }
 ```
 
-## License
+## References & Acknowledgements
 
-[License Information]
+
+
+We would like to express our gratitude to the following projects and organizations for their contributions to the field of AI and NLP:
+
+- [Hugging Face Transformers ↗](https://github.com/huggingface/transformers)
+- [OpenAI GPT ↗](https://github.com/openai/gpt-3)
+- [LLaMA ↗](https://llama.meta.com/)
+- [DeepSpeed ↗](https://github.com/microsoft/DeepSpeed)
+- [OpenRLHF↗](https://github.com/OpenRLHF/OpenRLHF)
+- [LLaMA-Factory↗](https://github.com/hiyouga/LLaMA-Factory)
 
 ## Contact
 
-For questions or feedback, please [open an issue](https://github.com/your_username/USP/issues) or contact us at [email address].
+For questions or feedback, please [open an issue](https://github.com/your_username/USP/issues) or or reach out to us at [kuangwang@link.cuhk.edu.cn](mailto:kuangwang@link.cuhk.edu.cn) or [jeffreyjiang@cuhk.edu.cn](mailto:jeffreyjiang@cuhk.edu.cn).
+
