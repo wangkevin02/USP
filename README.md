@@ -8,7 +8,26 @@ This repository contains the code for our paper: [Know You First and Be You Bett
 
 ## Table of Contents
 
-[TOC]
+- [USP](#usp)
+    - [Introduction](#introduction)
+    - [Table of Contents](#table-of-contents)
+    - [**Updates**](#updates)
+    - [**Plans**](#plans)
+    - [Models & Dataset](#models--dataset)
+    - [Quick Start](#quick-start)
+        - [Environment Setup](#environment-setup)
+        - [Inference](#inference)
+            - [Using the USP Model](#using-the-usp-model)
+            - [Using the Profile Generator](#using-the-profile-generator)
+        - [Train](#train)
+    - [Method Overview](#method-overview)
+    - [Experiment](#experiment)
+    - [Demo](#demo)
+    - [Citation](#citation)
+    - [License](#license)
+    - [Contact](#contact)
+
+
 
 ## **Updates**
 
@@ -164,7 +183,7 @@ For a more detailed explanation, please refer to Section 4 of [our paper](https:
 We evaluated our approach across multiple dimensions:
 
 - **Profile Quality**: Using our proposed Dialogue Profile Consistency (DPC) metric
-- User Simulator Performance:
+- **User Simulator Performance:**
     - **Authenticity**: Measuring semantic and stylistic similarity between reconstructed and target dialogues
     - **Consistency**: Assessing alignment between profiles and reconstructed dialogues
     - **Diversity**: Evaluating preservation of original dialogue distribution characteristics
@@ -179,7 +198,7 @@ For comprehensive evaluation results, please refer to Section 5 of [our paper](p
 
 Below, we compare the performance of our USP against several strong baselines, all simulating **user** in multi-turn conversational interactions with LLMs. The first example demonstrates the reconstruction of a dialogue based on user characteristics extracted from a reference conversation. The second illustrates how different user simulators interact with an LLM using the <u>same randomly given profile</u>.
 
-**Analysis:** In the first figure, ProfileGPT (4o) struggles with **role confusion** and loops into mutual thanks with the LLM, while PlatoLM, unconstrained by a profile, **deviates from the topic** by the fourth turn (shifting from LLM-AI discussions to summarizing text) despite given the golden first-round context. Our USP effectively reconstructs user traits, maintaining semantic focus and even capturing stylistic quirks like the user’s “lazy” preference (e.g., lowercase “i”). In the second figure, ProfileGPT (4o) simulates the central theme well but over-expresses, often praising the LLM or offering help, whereas our USP better reflects real human-LLM dialogue with concise, direct expressions.
+**Analysis:** In the first example, ProfileGPT (4o), a GPT-4o baseline simulating users via role-playing, exhibits **role confusion** and devolves into repetitive mutual praise with the LLM. PlatoLM, lacking profile constraints, **strays off-topic** by the fourth turn (shifting from LLM-AI discussions to text summarization), despite given the golden first-round context.In contrast, our USP accurately reconstructs user characteristics, preserving semantic consistency and capturing stylistic nuances, such as the user’s “lazy” lowercase “i” preference. In the second example, ProfileGPT (4o) captures the profile’s core theme but over-embellishes, frequently praising or assisting the LLM, while our USP mirrors authentic human-LLM dialogue with concise, direct responses.
 
 
 
