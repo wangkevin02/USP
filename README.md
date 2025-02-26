@@ -42,7 +42,7 @@ This repository contains the code for our paper: [Know You First and Be You Bett
 
 ## Quick Start
 
-创建基础环境
+### Environment Setup
 
 ```bash
 conda create -n USP python=3.10 -y
