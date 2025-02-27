@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository contains the code for our paper: [Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles](), where we introduce our **User Simulator with Implicit Profiles (USP)**, which can simulate realistic user by generating the target user's behavior or utterances based on the specified profile, enabling **automated** dynamic multi-turn interactions with LLMs and scene reproduction. See our [Demo](#Demo) for a clearer insight.
+This repository contains the code for our paper: [Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles](https://arxiv.org/pdf/2502.18968), where we introduce our **User Simulator with Implicit Profiles (USP)**, which can simulate realistic user by generating the target user's behavior or utterances based on the specified profile, enabling **automated** dynamic multi-turn interactions with LLMs and scene reproduction. See our [Demo](#Demo) for a clearer insight.
 
 <img src="./assets/image-20250226170315926.png" alt="Dialogue Visualization" style="width: 50%; height: auto; display: block; margin: 0 auto;" />
 
@@ -223,11 +223,14 @@ In the second example, ProfileGPT (4o) captures the profile’s core theme but o
 If you use our models or dataset in your research, please cite our paper:
 
 ```
-bibtexCopy@article{wang2025usp,
-  title={User Simulator with Implicit Profiles},
-  author={Wang, Kevin and [Other Authors]},
-  journal={[Journal Name]},
-  year={2025}
+@misc{wang2025knowbettermodelinghumanlike,
+      title={Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles}, 
+      author={Kuang Wang and Xianfei Li and Shenghao Yang and Li Zhou and Feng Jiang and Haizhou Li},
+      year={2025},
+      eprint={2502.18968},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2502.18968}, 
 }
 ```
 
