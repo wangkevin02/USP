@@ -19,10 +19,11 @@ model_config = {
 # Load the pre-trained model with specified configurations
 model = AutoModelForCausalLM.from_pretrained(**model_config)
 model.eval()
+
+# Define conversation messages
 user_profile = """
 You have a knack for planning exciting adventures, particularly when it comes to exploring new destinations on a budget. Your current focus is on organizing a cost-effective vacation to a warm, beach-filled location. You're actively seeking recommendations for such a getaway, with a particular interest in places like Phuket, Thailand. You're keen on discovering the must-visit spots in Phuket without breaking the bank, and you're looking for advice on how to make the most of your trip within your budget constraints. Your love for travel is evident in your habit of meticulously planning vacations in advance, ensuring you maximize both the experience and the value for money.\n\nYour personality shines through in your conscientious approach to planning, where every detail is considered and nothing is left to chance. You're open-minded and adventurous, always eager to dive into new experiences and embrace what each destination has to offer. Your inquisitive nature means you're always asking questions, seeking out the best advice to enhance your journeys. You communicate with an informal and friendly style, making it easy for others to share their knowledge and insights with you. This combination of traits makes you not only a savvy traveler but also a delightful companion on any adventure.
 """.strip()
-# Define conversation messages
 messages = [
         [
      {"role": "system", "content": f"You are engaging in a conversation with an AI assistant. Your profile is: \n{user_profile}\n You can say anything you want, either based on the profile or something brand new.\n\n"},
