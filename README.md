@@ -249,5 +249,5 @@ We would like to express our gratitude to the following projects and organizatio
 
 ## Contact
 
-For questions or feedback, please [open an issue](https://github.com/your_username/USP/issues) or or reach out to us at [kuangwang@link.cuhk.edu.cn](mailto:kuangwang@link.cuhk.edu.cn) or [jeffreyjiang@cuhk.edu.cn](mailto:jeffreyjiang@cuhk.edu.cn).
+For questions or feedback, please [open an issue](https://github.com/your_username/USP/issues) or reach out to us at [kuangwang@link.cuhk.edu.cn](mailto:kuangwang@link.cuhk.edu.cn) or [jeffreyjiang@cuhk.edu.cn](mailto:jeffreyjiang@cuhk.edu.cn).
 
