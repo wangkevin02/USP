@@ -2,9 +2,9 @@
 
 ## Introduction
 
-This repository contains the code for our paper: [Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles](https://arxiv.org/pdf/2502.18968), where we introduce our **User Simulator with Implicit Profiles (USP)**, which can simulate realistic user by generating the target user's behavior or utterances based on the specified profile, enabling **automated** dynamic multi-turn interactions with LLMs and scene reproduction. See our [Demo](#Demo) for a clearer insight.
+This repository contains the code for our paper: [Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles](), where we introduce our **User Simulator with Implicit Profiles (USP)**, which can simulate realistic user by generating the target user's behavior or utterances based on the specified profile, enabling **automated** dynamic multi-turn interactions with LLMs and scene reproduction. See our [Demo](#Demo) for a clearer insight.
 
-<img src="./assets/image-20250226170315926.png" alt="Dialogue Visualization" style="width: 50%; height: auto; display: block; margin: 0 auto;" />
+![image-20250611105110924](./assets/example.png)
 
 
 
@@ -175,14 +175,14 @@ Our framework consists of four key components:
 
 1. **User Profile Construction**: We employ a two-stage profile construction approach to generate natural user descriptions encompassing objective facts and subjective characteristics. This produces our LMSYS-USP dataset. Examples can be found in  <a href="https://huggingface.co/datasets/wangkevin02/LMSYS-USP"><img alt="LMSYS-USP Dataset" src="https://img.shields.io/badge/Dataset-LMSYS--USP-0088ff" /></a>.
 2. **Conditional Supervised Fine-Tuning (SFT)**: We train our model by combining profile and contextual information to develop utterance-level conditional generation capabilities.
-3. **Reinforcement Learning with Cycle Consistency**: We improve the conversation-level self-representation ability of the user simulator by reinforcing the alignment between the reflected profiles extracted from simulated dialogues and the target profiles.
-4. **Diverse Profile Sampling**: We model the distribution of real user characteristics from our training data, allowing for the sampling of realistic profiles based on probability density or the synthesis of virtual profiles through nearest-neighbor approximation.
+3. **Diverse Profile Sampling**: We model the distribution of real user characteristics from our training data, allowing for the sampling of realistic profiles based on probability density or the synthesis of virtual profiles through nearest-neighbor approximation.
+4. **Reinforcement Learning with Cycle Consistency**: We improve the conversation-level self-representation ability of the user simulator by reinforcing the alignment between the reflected profiles extracted from simulated dialogues and the target profiles.
 
 For a more detailed explanation, please refer to Section 4 of [our paper](https://tongyi.aliyun.com/qianwen/paper_link).
 
+![framework_00](./assets/framework.png)
 
 
-![image-20250226132356726](./assets/image-20250226132356726.png)
 
 
 
@@ -206,31 +206,43 @@ For comprehensive evaluation results, please refer to Section 5 of [our paper](p
 
 ## Demo
 
-Below, we compare the performance of our USP against several strong baselines, all simulating **user** in multi-turn conversational interactions with LLMs. The first example demonstrates the reconstruction of a dialogue based on user characteristics extracted from a reference conversation. The second illustrates the varying behaviors of different user simulators when using the *<u>same randomly given profile</u>*.
+### **Example 1: Abstract-to-Concrete User Simulation**
 
-**Analysis:** In the first example, ProfileGPT (4o), a GPT-4o baseline simulating users via role-playing, exhibits **role confusion** and devolves into repetitive mutual praise with the LLM. PlatoLM, lacking profile constraints, **strays off-topic** by the fourth turn (shifting from LLM-AI discussions to text summarization), despite given the golden first-round context.In contrast, our USP accurately reconstructs user characteristics, preserving semantic consistency and capturing stylistic nuances, such as the user’s “lazy” lowercase “i” preference. 
+- **Scenario:**
+    Both GPT-4o (as a user simulator) and USP are given a profile from the test set and engage in multi-turn dialogue with GPT-4o (as a vanilla LLM).
+- **Baseline (GPT-4o w/ Profile):**
+     Tends to **explicitly replicate abstract attributes** (e.g., “As a father of two”), which aligns with the profile but **lacks the implicitness typical of real user self-expression**.
+- **USP Performance:**
+    - Implicitly conveys user traits—mentioning a “son” and a “daughter” in later turns rather than stating parenthood directly, and referring to a specific dish like *pasta* instead of broadly claiming a preference for Italian food.
 
-In the second example, ProfileGPT (4o) captures the profile’s core theme but over-embellishes, frequently praising or assisting the LLM, while our USP mirrors authentic human-LLM dialogue with concise, direct responses.
+![image-20250611104717675](./assets/case_study1.png)
+
+### **Example 2: Realistic Style and Dialogue-level Consistency**
+
+- **Scenario:**
+     A dialogue is reconstructed based on user characteristics extracted from a reference conversation (shown at the bottom of the figure).
+- **Baselines Observed:**
+    - **GPT-4o w/ Profile:**
+         Simulates users through role-playing based on extracted profiles, but often suffers from **role confusion**, devolving into **repetitive mutual praise** with the LLM—a frequent failure mode observed in our experiments.
+    - **PlatoLM:**
+         Lacks profile conditioning and uses a golden first-turn as a seed. By the fourth turn, it **drifts off-topic**, shifting from LLM-related discussion to **text summarization**, despite being anchored in a coherent initial context.
+- **USP Performance:**
+     Effectively reconstructs user intent and persona, maintaining **semantic coherence** across turns and capturing **stylistic cues**, such as the user’s casual use of lowercase “i,” which reflects informal or unmotivated speech patterns.
+
+![image-20250611105526043](./assets/case_study2.png)
 
 
-
-![image-20250226110713506](./assets/image-20250226110713506.png)
-
-![image-20250226110729176](./assets/image-20250226110729176.png)
 
 ## Citation
 
 If you use our models or dataset in your research, please cite our paper:
 
 ```
-@misc{wang2025knowbettermodelinghumanlike,
-      title={Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles}, 
-      author={Kuang Wang and Xianfei Li and Shenghao Yang and Li Zhou and Feng Jiang and Haizhou Li},
-      year={2025},
-      eprint={2502.18968},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2502.18968}, 
+bibtexCopy@article{wang2025usp,
+  title={User Simulator with Implicit Profiles},
+  author={Wang, Kevin and [Other Authors]},
+  journal={[Journal Name]},
+  year={2025}
 }
 ```
 
@@ -249,5 +261,5 @@ We would like to express our gratitude to the following projects and organizatio
 
 ## Contact
 
-For questions or feedback, please [open an issue](https://github.com/your_username/USP/issues) or reach out to us at [kuangwang@link.cuhk.edu.cn](mailto:kuangwang@link.cuhk.edu.cn) or [jeffreyjiang@cuhk.edu.cn](mailto:jeffreyjiang@cuhk.edu.cn).
+For questions or feedback, please [open an issue](https://github.com/your_username/USP/issues) or or reach out to us at [kuangwang@link.cuhk.edu.cn](mailto:kuangwang@link.cuhk.edu.cn) or [jeffreyjiang@cuhk.edu.cn](mailto:jeffreyjiang@cuhk.edu.cn).
 
