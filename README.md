@@ -2,17 +2,19 @@
 
 This repository contains the code for our paper: [Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles](https://arxiv.org/abs/2502.18968), where we introduce our **User Simulator with Implicit Profiles (USP)**, which can simulate realistic user by generating the target user's behavior or utterances based on the specified profile, enabling **automated** dynamic multi-turn interactions with LLMs and scene reproduction. See our [Demo](#Demo) for a clearer insight.
 
-![image-20250611105110924](./assets/example.png)
 
 
+## **Updates**
 
-
+- *[June 29, 2025]* We released the **core training code** for USP, including conditional SFT, RLCC, and the auxiliary models used in RLCC, such as the AI detection model and the profile generator. See [Train Code](#Train) for details.
+- *[May 16, 2025]* Our paper was accepted at **ACL 2025**.
+- *[February 26, 2025]* We have published our paper along with the weights for our User Simulator with Implicit Profiles (USP) and auxiliary models.
 
 ## Table of Contents
 
 - [USP](#usp)
-    - [Table of Contents](#table-of-contents)
     - [**Updates**](#updates)
+    - [Table of Contents](#table-of-contents)
     - [**Plans**](#plans)
     - [Models & Dataset](#models--dataset)
     - [Quick Start](#quick-start)
@@ -27,14 +29,6 @@ This repository contains the code for our paper: [Know You First and Be You Bett
     - [Citation](#citation)
     - [References & Acknowledgements](#Acknowledgements)
     - [Contact](#contact)
-
-
-
-## **Updates**
-
-- *[June 29, 2025]* We released the **core training code** for USP, including conditional SFT, RLCC, and the auxiliary models used in RLCC, such as the AI detection model and the profile generator. See [Train Code](#Train) for details.
-- *[May 16, 2025]* Our paper was accepted at **ACL 2025**.
-- *[February 26, 2025]* We have published our paper along with the weights for our User Simulator with Implicit Profiles (USP) and auxiliary models.
 
 
 
@@ -92,7 +86,7 @@ pip install -r inf_requirements.txt
 model_path = "/your/path/to/USP"
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.bfloat16, device_map="cuda")
-user_profile ="You are engaging in a conversation with an AI assistant. Your profile is: \nYou're a budget-savvy traveler passionate about planning exciting, cost-effective adventures, with a current focus on a beach vacation in Phuket, Thailand...\n You can say anything you want, either based on the profile or something brand new.\n\n"
+user_profile ="You are engaging in a conversation with an AI assistant. Your profile is: /nYou're a budget-savvy traveler passionate about planning exciting, cost-effective adventures, with a current focus on a beach vacation in Phuket, Thailand.../n You can say anything you want, either based on the profile or something brand new./n/n"
 
 messages = messages = [[{"role": "system", "content": user_profile},],
 [    {"role": "system", "content": user_profile}
@@ -200,7 +194,7 @@ For complete implementation details, see [user_simulator.py](./examples/user_sim
      ./run.sh
      ```
 
-     > For implementation details and training considerations, see [SFT_Reame.md](src\conditional_sft\Reame.md) 
+     > For implementation details and training considerations, see [SFT_Reame.md](./src/conditional_sft/Reame.md) 
 
    - *RLCC*:
 
@@ -209,9 +203,9 @@ For complete implementation details, see [user_simulator.py](./examples/user_sim
      chmod 777 ./run.sh
      ./run.sh
      ```
-
-   > <span style="background-color: #f8d7da; color: #721c24; padding: 4px; border-radius: 4px;"> Currently supports single-GPU training only.</span>，For details on the underlying design and limitations, refer to  [RLCC_Reame.md](src\rlcc\Reame.md).
-
+  
+     > **⚠️ Currently supports single-GPU training only.**，For details on the underlying design and limitations, refer to  [RLCC_Reame.md](src/rlcc/Reame.md).
+  
    - *AI Detection Model*:
 
      ```bash
@@ -220,7 +214,7 @@ For complete implementation details, see [user_simulator.py](./examples/user_sim
      ./train.sh
      ```
 
-     > For an overview of the methodology and training considerations, see [Auxiliary_Reame.md](src\auxiliary_models\Reame.md) 
+     > For an overview of the methodology and training considerations, see [Auxiliary_Reame.md](src/auxiliary_models/Reame.md) 
 
 3. **Implementation Details**
 

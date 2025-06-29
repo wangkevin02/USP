@@ -37,7 +37,7 @@
   ./run_remote_rm.sh
   ```
 
-- Please complete the basic path configurations in [`train_ppo_llama.sh`](OpenRLHF\examples\scripts\train_ppo_llama.sh), including:
+- Please complete the basic path configurations in [`train_ppo_llama.sh`](OpenRLHF/examples/scripts/train_ppo_llama.sh), including:
 
   - The path to the model checkpoint obtained from Conditional SFT training.
   - The dataset path for PPO training.
@@ -53,7 +53,7 @@
 **Notes**
 
 - *Reward request failures*: Verify that the reward service IP and ports match between the deployment and `train_ppo_llama.sh`.
-- *Multi-GPU limitations*: Multi-GPU training is <span style="background-color: #f8d7da; color: #721c24; padding: 4px; border-radius: 4px;"> currently unsupported</span>. Due to variable turn counts arising from differing response lengths in sampling, **batches across devices may have inconsistent shapes**, preventing synchronization. Optimization is ongoing.
+- *Multi-GPU limitations*:  **⚠️Multi-GPU training is currently unsupported**. Due to variable turn counts arising from differing response lengths in sampling, **batches across devices may have inconsistent shapes**, preventing synchronization. Optimization is ongoing.
 
 
 
