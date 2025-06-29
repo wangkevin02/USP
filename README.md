@@ -1,8 +1,6 @@
 # USP
 
-## Introduction
-
-This repository contains the code for our paper: [Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles](), where we introduce our **User Simulator with Implicit Profiles (USP)**, which can simulate realistic user by generating the target user's behavior or utterances based on the specified profile, enabling **automated** dynamic multi-turn interactions with LLMs and scene reproduction. See our [Demo](#Demo) for a clearer insight.
+This repository contains the code for our paper: [Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles](https://arxiv.org/abs/2502.18968), where we introduce our **User Simulator with Implicit Profiles (USP)**, which can simulate realistic user by generating the target user's behavior or utterances based on the specified profile, enabling **automated** dynamic multi-turn interactions with LLMs and scene reproduction. See our [Demo](#Demo) for a clearer insight.
 
 ![image-20250611105110924](./assets/example.png)
 
@@ -13,7 +11,6 @@ This repository contains the code for our paper: [Know You First and Be You Bett
 ## Table of Contents
 
 - [USP](#usp)
-    - [Introduction](#introduction)
     - [Table of Contents](#table-of-contents)
     - [**Updates**](#updates)
     - [**Plans**](#plans)
@@ -35,6 +32,8 @@ This repository contains the code for our paper: [Know You First and Be You Bett
 
 ## **Updates**
 
+- *[June 29, 2025]* We released the **core training code** for USP, including conditional SFT, RLCC, and the auxiliary models used in RLCC, such as the AI detection model and the profile generator. See [Train Code](#Train) for details.
+- *[May 16, 2025]* Our paper was accepted at **ACL 2025**.
 - *[February 26, 2025]* We have published our paper along with the weights for our User Simulator with Implicit Profiles (USP) and auxiliary models.
 
 
@@ -45,10 +44,11 @@ This repository contains the code for our paper: [Know You First and Be You Bett
 - [x] Release the weights for the User Simulator with Implicit Profiles (USP)
 - [x] Release the weights for the auxiliary models
 - [x] Publish our dataset, consisting of human-computer interaction data with **user profiles**
-- [ ] Release our conditional Supervised Fine-Tuning (SFT) training code
-- [ ] Release our reinforcement with cycle consistency training code
-- [ ] Release auxiliary model training code
+- [x] Release our conditional Supervised Fine-Tuning (SFT) training code
+- [x] Release our reinforcement with cycle consistency training code
+- [x] Release auxiliary model training code
 - [ ] Release the diverse sampler code
+- [ ] Release evaluation code
 
 
 
@@ -70,6 +70,7 @@ This repository contains the code for our paper: [Know You First and Be You Bett
 ```bash
 conda create -n USP python=3.10 -y
 conda activate USP
+cd USP
 ```
 
 ### Inference
@@ -163,7 +164,79 @@ For complete implementation details, see [user_simulator.py](./examples/user_sim
 
 ### Train
 
-Training code will be released soon.
+1. **Install Dependencies**
+
+   ```bash
+   cd src/rlcc/OpenRLHF
+   pip install -e .
+   pip install "fastapi[standard]"
+   pip install git+https://github.com/princeton-nlp/SimCSE.git
+   ```
+
+   If you encounter issues installing `flash-attn`, manually download the whl file. For example, when using `Torch=2.5.0`, `CUDA=12.x`, and `Python=3.10`, you can run the following command:
+
+   ```bash
+   wget https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.0.post2/flash_attn-2.7.0.post2+cu12torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+   pip install ./flash_attn-2.7.0.post2+cu12torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
+   ```
+
+   If you experience problems installing `SimCSE`, clone and install manually:
+
+   ```bash
+   git clone https://github.com/princeton-nlp/SimCSE.git
+   cd SimCSE
+   pip install -e .
+   ```
+
+2. **Verify Installation**
+
+   Sample data are provided in each module directory to validate the environment:
+
+   - *Conditional SFT*:
+
+     ```bash
+     cd src/conditional_sft
+     chmod 777 ./run.sh
+     ./run.sh
+     ```
+
+     > For implementation details and training considerations, see [SFT_Reame.md](src\conditional_sft\Reame.md) 
+
+   - *RLCC*:
+
+     ```bash
+     cd src/rlcc/OpenRLHF
+     chmod 777 ./run.sh
+     ./run.sh
+     ```
+
+   > <span style="background-color: #f8d7da; color: #721c24; padding: 4px; border-radius: 4px;"> Currently supports single-GPU training only.</span>，For details on the underlying design and limitations, refer to  [RLCC_Reame.md](src\rlcc\Reame.md).
+
+   - *AI Detection Model*:
+
+     ```bash
+     cd src/auxiliary_models/ai_detect_model
+     chmod 777 ./train.sh
+     ./train.sh
+     ```
+
+     > For an overview of the methodology and training considerations, see [Auxiliary_Reame.md](src\auxiliary_models\Reame.md) 
+
+3. **Implementation Details**
+
+   Refer to the corresponding README files for comprehensive guidance on configuration and usage.
+
+4. **Reproducing Results**
+
+   1. Download the dataset:
+
+      ```bash
+      huggingface-cli download --resume-download wangkevin02/LMSYS-USP --local-dir LMSYS-USP --repo-type dataset
+      ```
+
+   2. Convert the data formats required by each auxiliary model, referring to the provided sample files for guidance.
+
+   3. Place the processed data in the appropriate directories and adjust the training scripts accordingly
 
 
 
@@ -200,7 +273,7 @@ We evaluated our approach across multiple dimensions:
 
 Additionally, we evaluated the effectiveness of our framework by dynamically assessing the performance of mainstream LLMs in multi-turn dialogues. These interactions were conducted between our user simulator and the LLMs, using user profiles derived from diverse populations, including majority groups, minority groups, and synthetic populations.
 
-For comprehensive evaluation results, please refer to Section 5 of [our paper](paper_link).
+For comprehensive evaluation results, please refer to Section 5 of [our paper](https://arxiv.org/abs/2502.18968).
 
 
 
@@ -238,11 +311,14 @@ For comprehensive evaluation results, please refer to Section 5 of [our paper](p
 If you use our models or dataset in your research, please cite our paper:
 
 ```
-bibtexCopy@article{wang2025usp,
-  title={User Simulator with Implicit Profiles},
-  author={Wang, Kevin and [Other Authors]},
-  journal={[Journal Name]},
-  year={2025}
+@misc{wang2025knowbettermodelinghumanlike,
+      title={Know You First and Be You Better: Modeling Human-Like User Simulators via Implicit Profiles}, 
+      author={Kuang Wang and Xianfei Li and Shenghao Yang and Li Zhou and Feng Jiang and Haizhou Li},
+      year={2025},
+      eprint={2502.18968},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2502.18968}, 
 }
 ```
 

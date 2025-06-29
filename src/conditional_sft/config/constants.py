@@ -1,0 +1,11 @@
+BEGIN_OF_TEXT_TOKEN = "<|begin_of_text|>"
+START_HEADER_TOKEN = "<|start_header_id|>"
+END_HEADER_TOKEN = "<|end_header_id|>"
+EOT_TOKEN = "<|eot_id|>"
+NL_TOKENS = "\n\n"
+SYSTEM_TOKEN = "system"
+USER_TOKEN = "user"
+ASSISTANT_TOKEN = "assistant"
+IGNORE_TOKEN_ID = -100
+PAD_TOKEN = "<|pad|>"
+CHAT_TEMPLATE = "{% set loop_messages = messages %}{% for message in loop_messages %}{% set content = '<|start_header_id|>' + message['role']|lower + '<|end_header_id|>\n\n'+ message['content'] | trim + '<|eot_id|>' %}{% if loop.index0 == 0 %}{% set content = bos_token + content %}{% endif %}{{ content }}{% endfor %}{% if add_generation_prompt %}{{ '<|start_header_id|>user<|end_header_id|>\n\n' }}{% endif %}"
