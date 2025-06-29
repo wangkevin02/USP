@@ -28,7 +28,7 @@ openrlhf.cli.train_ppo \
    --actor_learning_rate 5e-7 \
    --critic_learning_rate 9e-6 \
    --init_kl_coef 0.01 \
-   --prompt_data ../dataset/train.jsonl \
+   --prompt_data ../../dataset/train.jsonl \
    --input_key conv \
    --apply_chat_template \
    --flash_attn \
