@@ -59,11 +59,9 @@ def is_local_main_process():
 class ModelArguments:
     """Arguments related to the model configuration."""
     model_name_or_path: str = field(
-        default="/home/wangkuang/workshop/git/Meta-Llama-3-8B-Instruct",
         metadata={"help": "Path to pretrained model or model identifier from huggingface.co/models"}
     )
     tokenizer_name_or_path: Optional[str] = field(
-        default="/home/wangkuang/workshop/git/Meta-Llama-3-8B-Instruct",
         metadata={"help": "Pretrained tokenizer name or path if different from model_name"}
     )
     use_flash_attention: bool = field(
@@ -79,11 +77,9 @@ class ModelArguments:
 class DataArguments:
     """Arguments related to data loading and preprocessing."""
     data_path: str = field(
-        default= "/mntcephfs/home_data/wangkuang/User_Simulator/dataset/train_data_split",
         metadata={"help": "Path to the training data directory"}
     )
     eval_data_path: Optional[str] = field(
-        default= "/mntcephfs/home_data/wangkuang/User_Simulator/dataset/eval_data_split",
         metadata={"help": "Path to the evaluation data directory"}
     )
     lazy_load : bool = field(
